@@ -5,14 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🎉 꿀꿀꿀 망원시장 근처 돼지파티 제1회</title>
 
-  <!-- 카톡 미리보기 (OG 태그) -->
+  <!-- ✅ 기본 메타(미리보기/검색용) -->
+  <meta name="description" content="2026.01.26~01.27 · 망원시장 근처 aufn · 꿀꿀꿀 돼지파티 · 초대받은 분만!" />
+  <link rel="canonical" href="https://ptpizza.github.io/oink-oink-pig-party/" />
+
+  <!-- ✅ 카톡 미리보기 (OG 태그) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="꿀꿀꿀 돼지파티" />
   <meta property="og:title" content="🎉 꿀꿀꿀 망원시장 근처 돼지파티 초대권" />
   <meta property="og:description" content="2026.01.26~01.27 · 망원시장 근처 aufn · 꿀꿀꿀 돼지파티 · 초대받은 분만!" />
-  <meta property="og:url" content="https://ptPizza.github.io/oink-oink-pig-party/" />
-  <meta property="og:image" content="https://ptPizza.github.io/oink-oink-pig-party/pigparty.jpeg" />
+
+  <!-- ✅ (중요) 도메인/경로는 실제 Pages 주소와 동일하게! (소문자 권장) -->
+  <meta property="og:url" content="https://ptpizza.github.io/oink-oink-pig-party/" />
+
+  <!-- ✅ (중요) og:image는 '절대경로' + 실제 파일명/위치 정확히 -->
+  <meta property="og:image" content="https://ptpizza.github.io/oink-oink-pig-party/pigparty.jpeg" />
+  <meta property="og:image:alt" content="꿀꿀꿀 돼지파티 제1회 초대 썸네일" />
+
+  <!-- ✅ 트위터/기타 미리보기 보강 -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="🎉 꿀꿀꿀 돼지파티 초대권" />
+  <meta name="twitter:description" content="2026.01.26~01.27 · 망원시장 근처 aufn · 초대받은 분만!" />
+  <meta name="twitter:image" content="https://ptpizza.github.io/oink-oink-pig-party/pigparty.jpeg" />
 
   <style>
     body {
@@ -107,22 +121,12 @@
       font-weight: 800;
     }
 
-    .section {
-      margin-top: 18px;
-      background: #faf7ff;
-      border: 1px solid #eee6ff;
-      border-radius: 16px;
-      padding: 14px;
-      text-align: left;
-    }
-
-    ul.list { padding-left: 18px; font-size: 14px; line-height: 1.75; }
-
     .footer {
       margin-top: 18px;
       font-size: 12px;
       color: #999;
       text-align: center;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -146,7 +150,10 @@
       <div class="row"><div class="icon">📍</div><div><b>망원시장 근처 aufn</b></div></div>
     </div>
 
-    <a class="btn-map" href="https://map.naver.com/p/entry/place/1655913951" target="_blank" rel="noopener noreferrer">
+    <a class="btn-map"
+       href="https://map.naver.com/p/entry/place/1655913951"
+       target="_blank"
+       rel="noopener noreferrer">
       📍 네이버 지도에서 위치 보기
     </a>
 
@@ -158,11 +165,25 @@
 
   <script>
     (function () {
+      // 파티 시작일: 2026-01-26 17:00 (KST)
       const partyStart = new Date("2026-01-26T17:00:00+09:00");
       const now = new Date();
-      const diffDays = Math.ceil((partyStart - now) / (1000 * 60 * 60 * 24));
+
+      const msPerDay = 24 * 60 * 60 * 1000;
+      const diffMs = partyStart.getTime() - now.getTime();
+      const diffDays = Math.ceil(diffMs / msPerDay);
+
       const el = document.getElementById("dday");
-      el.textContent = diffDays > 0 ? `파티까지 D-${diffDays}` : "오늘이 바로 돼지파티 🐷";
+      if (!el) return;
+
+      if (diffMs > 0) {
+        el.textContent = `파티까지 D-${diffDays}`;
+      } else if (diffMs > -msPerDay) {
+        el.textContent = "오늘이 바로 돼지파티 🐷";
+      } else {
+        const passedDays = Math.floor(Math.abs(diffMs) / msPerDay);
+        el.textContent = `파티가 시작된 지 D+${passedDays}`;
+      }
     })();
   </script>
 </body>
