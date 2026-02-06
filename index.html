@@ -14,15 +14,13 @@
   <meta property="og:site_name" content="꿀꿀꿀 돼지파티" />
   <meta property="og:title" content="🎉 꿀꿀꿀 망원시장 근처 돼지파티 초대권" />
   <meta property="og:description" content="2026.01.26~01.27 · 망원시장 근처 aufn · 꿀꿀꿀 돼지파티 · 초대받은 분만!" />
-  <meta property="og:url" content="https://ptpizza.github.io/oink-oink-oink-pig-party/" />
 
-  <!-- ✅ 썸네일 이미지: pigparty2.png 로 변경 -->
+  <!-- ✅ 중요: 카톡 캐시 꼬임 방지 위해 og:url 제거 (카톡이 실제 URL 기준으로 캐시하게) -->
+
+  <!-- ✅ 썸네일 이미지: pigparty2.png -->
   <meta property="og:image" content="https://ptpizza.github.io/oink-oink-oink-pig-party/pigparty2.png" />
   <meta property="og:image:secure_url" content="https://ptpizza.github.io/oink-oink-oink-pig-party/pigparty2.png" />
   <meta property="og:image:type" content="image/png" />
-  <!-- 가능하면 실제 이미지가 1200x630이면 베스트. 모르겠으면 일단 유지 -->
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="꿀꿀꿀 돼지파티 제1회 초대 썸네일" />
 
   <!-- ✅ 트위터/기타 미리보기 보강 -->
@@ -136,7 +134,6 @@
 
 <body>
   <div class="card">
-
     <div class="logo-wrap">
       <img src="./pigpig.jpeg" alt="꿀꿀꿀 돼지파티 로고" class="logo" />
     </div>
@@ -163,7 +160,6 @@
     <div class="footer">
       © 2026 ptPizza. All rights reserved.
     </div>
-
   </div>
 
   <script>
@@ -178,14 +174,9 @@
       const el = document.getElementById("dday");
       if (!el) return;
 
-      if (diffMs > 0) {
-        el.textContent = `파티까지 D-${diffDays}`;
-      } else if (diffMs > -msPerDay) {
-        el.textContent = "오늘이 바로 돼지파티 🐷";
-      } else {
-        const passedDays = Math.floor(Math.abs(diffMs) / msPerDay);
-        el.textContent = `파티가 시작된 지 D+${passedDays}`;
-      }
+      if (diffMs > 0) el.textContent = `파티까지 D-${diffDays}`;
+      else if (diffMs > -msPerDay) el.textContent = "오늘이 바로 돼지파티 🐷";
+      else el.textContent = `파티가 시작된 지 D+${Math.floor(Math.abs(diffMs) / msPerDay)}`;
     })();
   </script>
 </body>
